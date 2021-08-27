@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <h1>My app</h1>
+    <div id="app" class="mt5">
+        <div class="container border border-primary">
+            <div class="row" >
+                <div class="col-6 border border-secondary" v-for="(player, index) in players" v-bind:class="{'bg-red': player.health <= 0, 'bg-green':index == activeIndex}">
+                    <div class="player-wrap" v-if="player.health > 0">
+                        <h3>{{player.name}} <span class="health-line" :style="{ width: player.health + '%' }"></span></h3>
+                        <p>Weapon: {{player.attack}}</p>
+                        <p>Defence: {{player.defence}}</p>
+                        <p>Healt: {{player.health}}</p>
+                        <p >
+                            <button v-if="!player.active" class="btn btn-primary" v-on:click="attack(players[activeIndex], player) ; activeChange()">Attack</button>
+                            <button v-if="player.active" class="btn btn-secondary" v-on:click="player.attack = changePar(); activeChange()">Weapon change</button>
+                            <button v-if="player.active" class="btn btn-dark" v-on:click="player.defence = changePar(); activeChange()">Defence change</button>
+                            <button v-if="player.active" class="btn btn-success" v-on:click="player.heal(); activeChange()">Healing</button>
+                        </p>
+                    </div>
+                    <div class="player-die" v-if="player.health <= 0">
+                        <h3>{{player.name}} RIP</h3>
+                    </div>
+                </div>
+                <div class="col-6"></div>
+            </div>
+            <h2 class="mt-3 critical"  v-if="isCritical">Critical</h2>
+            <h2 class="mt-3 dodge"  v-if="isDodge">Dodge</h2>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chance/1.1.4/chance.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="./index.js"></script>
+</body>
+</html>

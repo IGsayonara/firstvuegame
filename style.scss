@@ -1,0 +1,35 @@
+body{
+    background-color: #f6f6f7
+}
+
+.player-die{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.bg-red{
+    background-color:red;
+}
+
+.bg-green{
+    background-color: rgba($color: orange, $alpha: 0.5);
+}
+
+.health-line{
+    height: 20px;
+    display: block;
+    background: lawngreen;
+    transition: all 0.5s ease-in-out;
+}
+
+.critical{
+    color: red;
+    background-color: black;
+}
+
+.dodge{
+    color: yellow;
+    background-color: black;
+}
